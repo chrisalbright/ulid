@@ -85,14 +85,13 @@ public class ULIDTest {
 
     @Test
     public void randomPartMustNotRollOver() {
-        Assertions.assertThrows(OverflowException.class, () -> {
-            ULID.maxFor(Instant.now()).next();
-        });
+        Assertions.assertThrows(OverflowException.class, () -> ULID.maxFor(Instant.now()).next());
     }
 
     @Test
     public void ulidsGenerateQuickly() {
-        final int idCount = 10_000_000;
+        final int idCount = 1_000_000;
+        final int maxTime = 1_000;
         ULID[] ids = new ULID[idCount];
         Supplier<Long> differentMillisecondGenerator = new Supplier<>() {
             long currentTimestamp = System.currentTimeMillis();
@@ -110,7 +109,7 @@ public class ULIDTest {
         }
         final long end = System.nanoTime();
         final long runTime = end-start;
-        Assertions.assertTrue(runTime <= TimeUnit.MILLISECONDS.toNanos(1200));
+        Assertions.assertTrue(runTime <= TimeUnit.MILLISECONDS.toNanos(maxTime), String.format("Expected to generate %d ulids in under %d, but it took %d", idCount, maxTime, TimeUnit.NANOSECONDS.toMillis(runTime)));
     }
 
 }
