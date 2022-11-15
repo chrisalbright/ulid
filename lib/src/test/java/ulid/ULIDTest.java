@@ -1,5 +1,6 @@
 package ulid;
 
+import com.chrisalbright.ulid.NegativeCallTimeException;
 import com.chrisalbright.ulid.OverflowException;
 import com.chrisalbright.ulid.ULID;
 import org.junit.jupiter.api.Assertions;
@@ -86,6 +87,16 @@ public class ULIDTest {
     @Test
     public void randomPartMustNotRollOver() {
         Assertions.assertThrows(OverflowException.class, () -> ULID.maxFor(Instant.now()).next());
+    }
+
+    @Test
+    public void negativeCallTimesAreNotAllowed() {
+        Supplier<Long> negativeMillisecondGenerator = () -> -1L;
+        Random r = new Random();
+
+        ULID.Generator ulid = new ULID.Generator(r, negativeMillisecondGenerator);
+
+        Assertions.assertThrows(NegativeCallTimeException.class, ulid::generate);
     }
 
     @Test

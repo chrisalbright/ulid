@@ -35,7 +35,7 @@ public class ULID implements Comparable<ULID>, Serializable {
         public Generator(Random r, Supplier<Long> systemTime) {
             this.r = r;
             this.systemTime = systemTime;
-            this.lastCallTime = 0L;
+            this.lastCallTime = Long.MIN_VALUE;
         }
 
         private ULID next() {
@@ -52,6 +52,8 @@ public class ULID implements Comparable<ULID>, Serializable {
             long callTime = systemTime.get();
             if (callTime == lastCallTime) {
                 return next();
+            } else if (callTime < 0) {
+                throw new NegativeCallTimeException(String.format("Negative time value %d is not supported", callTime));
             }
             lastCallTime = callTime;
             return generate(callTime);

@@ -1,5 +1,6 @@
 plugins {
-    application
+    `java-library`
+    `maven-publish`
 }
 
 repositories {
@@ -7,14 +8,7 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":lib"))
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
-}
-
-application {
-    // Define the main class for the application.
-    mainClass.set("ulid")
-    applicationName = "ulid"
 }
 
 tasks.named<Test>("test") {

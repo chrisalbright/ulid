@@ -1,2 +1,3 @@
 rootProject.name = "ulid"
-include("app")
+include("app", "lib")
+
