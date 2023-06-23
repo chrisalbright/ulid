@@ -29,7 +29,7 @@ public class ULIDTest {
 
     @Test
     public void ulidsGeneratedInDifferentMillisecondsAreRandom() {
-        Supplier<Long> differentMillisecondGenerator = new Supplier<>() {
+        Supplier<Long> differentMillisecondGenerator = new Supplier<Long>() {
             long currentTimestamp = System.currentTimeMillis();
 
             @Override
@@ -66,7 +66,7 @@ public class ULIDTest {
         final int idCount = 1000000;
         ULID[] ids = new ULID[idCount];
         ULID[] sortedIds = new ULID[idCount];
-        Supplier<Long> differentMillisecondGenerator = new Supplier<>() {
+        Supplier<Long> differentMillisecondGenerator = new Supplier<Long>() {
             long currentTimestamp = System.currentTimeMillis();
 
             @Override
@@ -104,7 +104,7 @@ public class ULIDTest {
         final int idCount = 1_000_000;
         final int maxTime = 1_000;
         ULID[] ids = new ULID[idCount];
-        Supplier<Long> differentMillisecondGenerator = new Supplier<>() {
+        Supplier<Long> differentMillisecondGenerator = new Supplier<Long>() {
             long currentTimestamp = System.currentTimeMillis();
 
             @Override
