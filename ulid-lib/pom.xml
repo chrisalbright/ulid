@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.chrisalbright</groupId>
     <artifactId>ulid</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <name>ULID</name>
     <description>A ULID Library for the JVM</description>
