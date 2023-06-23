@@ -1,8 +1,8 @@
-package ulid;
+package io.github.chrisalbright.ulid;
 
-import com.chrisalbright.ulid.NegativeCallTimeException;
-import com.chrisalbright.ulid.OverflowException;
-import com.chrisalbright.ulid.ULID;
+import io.github.chrisalbright.ulid.NegativeCallTimeException;
+import io.github.chrisalbright.ulid.OverflowException;
+import io.github.chrisalbright.ulid.ULID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

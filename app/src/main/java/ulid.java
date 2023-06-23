@@ -1,4 +1,4 @@
-import com.chrisalbright.ulid.UlidApp;
+import io.github.chrisalbright.ulid.UlidApp;
 
 import java.security.SecureRandom;
 

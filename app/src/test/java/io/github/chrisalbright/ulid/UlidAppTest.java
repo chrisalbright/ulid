@@ -1,10 +1,9 @@
-package com.chrisalbright.ulid;
+package io.github.chrisalbright.ulid;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Random;
 import java.util.function.Supplier;

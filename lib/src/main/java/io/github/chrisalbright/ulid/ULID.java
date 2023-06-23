@@ -1,4 +1,4 @@
-package com.chrisalbright.ulid;
+package io.github.chrisalbright.ulid;
 
 import java.io.Serializable;
 import java.time.Instant;
