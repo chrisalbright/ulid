@@ -47,7 +47,6 @@ publishing {
         val main by creating(MavenPublication::class) {
             from(components["java"])
             pom {
-                artifactId = "ulid"
                 name.set("ulid")
                 description.set("A ulid library for the JVM")
                 url.set("https://github.com/chrisalbright/ulid")
