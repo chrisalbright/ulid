@@ -2,7 +2,7 @@ group = "io.github.chrisalbright"
 base {
     archivesName.set("ulid")
 }
-version = "1.0.0-SNAPSHOT"
+version = "1.0.0"
 
 plugins {
     `java-library`
