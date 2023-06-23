@@ -1,2 +1,2 @@
-rootProject.name = "io.github.chrisalbright.ulid"
-include("app", "lib")
+rootProject.name = "io.github.chrisalbright"
+include("ulid-app", "ulid-lib")

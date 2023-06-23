@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":lib"))
+    implementation(project(":ulid-lib"))
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
 }
 
