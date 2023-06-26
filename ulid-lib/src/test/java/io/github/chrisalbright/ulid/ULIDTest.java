@@ -1,8 +1,5 @@
 package io.github.chrisalbright.ulid;
 
-import io.github.chrisalbright.ulid.NegativeCallTimeException;
-import io.github.chrisalbright.ulid.OverflowException;
-import io.github.chrisalbright.ulid.ULID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -119,7 +116,7 @@ public class ULIDTest {
             ids[i] = ulid.generate();
         }
         final long end = System.nanoTime();
-        final long runTime = end-start;
+        final long runTime = end - start;
         Assertions.assertTrue(runTime <= TimeUnit.MILLISECONDS.toNanos(maxTime), String.format("Expected to generate %d ulids in under %d, but it took %d", idCount, maxTime, TimeUnit.NANOSECONDS.toMillis(runTime)));
     }
 

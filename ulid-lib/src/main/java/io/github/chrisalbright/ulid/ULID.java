@@ -7,9 +7,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.function.Supplier;
 
-
 public class ULID implements Comparable<ULID>, Serializable {
-
     public static final long MAX_TIMESTAMP = 0x0000_FFFF_FFFF_FFFFL;
     public static final long ROLLOVER_VALUE = 0xFFFF_FFFF_FFFF_FFFFL;
     public static final long MSB_MASK = 0xFFFFL;
