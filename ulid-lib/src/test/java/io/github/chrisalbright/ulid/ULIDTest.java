@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
@@ -58,11 +59,21 @@ public class ULIDTest {
         Assertions.assertEquals(expectedMax, generatedMax);
     }
 
+    private int randomIndex(Random r, BitSet b, int max) {
+        int selection = r.nextInt(max);
+        while (b.get(selection)) {
+            selection = r.nextInt(max);
+        }
+        b.set(selection);
+        return selection;
+    }
+
     @Test
     public void ulidsSort() {
-        final int idCount = 1000000;
-        ULID[] ids = new ULID[idCount];
-        ULID[] sortedIds = new ULID[idCount];
+        final int ID_COUNT = 1_000;
+        ULID[] ids = new ULID[ID_COUNT];
+        ULID[] sortedIds = new ULID[ID_COUNT];
+        BitSet bits = new BitSet(ID_COUNT);
         Supplier<Long> differentMillisecondGenerator = new Supplier<Long>() {
             long currentTimestamp = System.currentTimeMillis();
 
@@ -73,9 +84,10 @@ public class ULIDTest {
         };
         Random r = new Random();
         ULID.Generator ulid = new ULID.Generator(r, differentMillisecondGenerator);
-        for (int i = 0; i < ids.length; i++) {
+        for (int i = 0; i < ID_COUNT; i++) {
             ids[i] = ulid.generate();
-            sortedIds[i] = ids[i];
+            int j = randomIndex(r, bits, ID_COUNT);
+            sortedIds[j] = ids[i];
         }
         Arrays.sort(sortedIds);
         Assertions.assertArrayEquals(ids, sortedIds);
@@ -98,9 +110,9 @@ public class ULIDTest {
 
     @Test
     public void ulidsGenerateQuickly() {
-        final int idCount = 1_000_000;
+        final int ID_COUNT = 1_000_000;
         final int maxTime = 1_000;
-        ULID[] ids = new ULID[idCount];
+        ULID[] ids = new ULID[ID_COUNT];
         Supplier<Long> differentMillisecondGenerator = new Supplier<Long>() {
             long currentTimestamp = System.currentTimeMillis();
 
@@ -117,7 +129,7 @@ public class ULIDTest {
         }
         final long end = System.nanoTime();
         final long runTime = end - start;
-        Assertions.assertTrue(runTime <= TimeUnit.MILLISECONDS.toNanos(maxTime), String.format("Expected to generate %d ulids in under %d, but it took %d", idCount, maxTime, TimeUnit.NANOSECONDS.toMillis(runTime)));
+        Assertions.assertTrue(runTime <= TimeUnit.MILLISECONDS.toNanos(maxTime), String.format("Expected to generate %d ulids in under %d, but it took %d", ID_COUNT, maxTime, TimeUnit.NANOSECONDS.toMillis(runTime)));
     }
 
 }
